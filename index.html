@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 生日快乐 Happy Birthday 🎉</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 彩带背景容器 -->
+    <div id="confetti-container"></div>
+    
+    <!-- 气球容器 -->
+    <div id="balloon-container"></div>
+    
+    <!-- 烟花画布 -->
+    <canvas id="fireworks-canvas"></canvas>
+    
+    <!-- 初始打开页面 -->
+    <div id="welcome-screen" class="screen active">
+        <div class="gift-box-wrapper">
+            <div class="sparkles">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="gift-box" id="gift-box">
+                <div class="gift-lid">
+                    <div class="bow">
+                        <div class="bow-left"></div>
+                        <div class="bow-right"></div>
+                        <div class="bow-center"></div>
+                    </div>
+                </div>
+                <div class="gift-body">
+                    <div class="gift-ribbon-vertical"></div>
+                    <div class="gift-ribbon-horizontal"></div>
+                </div>
+            </div>
+            <p class="gift-hint">✨ 点击礼物盒打开惊喜 ✨</p>
+        </div>
+    </div>
+    
+    <!-- 主庆祝页面 -->
+    <div id="celebration-screen" class="screen">
+        <div class="celebration-content">
+            <div class="title-section">
+                <h1 class="main-title">
+                    <span class="char" style="--i:0">🎂</span>
+                    <span class="char" style="--i:1">生</span>
+                    <span class="char" style="--i:2">日</span>
+                    <span class="char" style="--i:3">快</span>
+                    <span class="char" style="--i:4">乐</span>
+                    <span class="char" style="--i:5">🎂</span>
+                </h1>
+                <h2 class="sub-title">Happy Birthday To You</h2>
+            </div>
+            
+            <div class="cake-section">
+                <div class="cake">
+                    <div class="cake-plate"></div>
+                    <div class="cake-layer cake-bottom"></div>
+                    <div class="cake-layer cake-middle"></div>
+                    <div class="cake-layer cake-top"></div>
+                    <div class="candles">
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wishes">
+                <p class="wish-text">🌸 愿你的每一天都充满阳光、欢笑与温暖 🌸</p>
+                <p class="wish-text">🌟 愿所有美好如期而至 🌟</p>
+            </div>
+            
+            <div class="time-section">
+                <div class="date-display" id="date-display">2026年01月01日 星期一</div>
+                <div class="clock-display">
+                    <span class="time-block" id="hours">00</span>
+                    <span class="time-separator">:</span>
+                    <span class="time-block" id="minutes">00</span>
+                    <span class="time-separator">:</span>
+                    <span class="time-block" id="seconds">00</span>
+                </div>
+            </div>
+            
+            <div class="signature">
+                <p>— ❤️ 来自最真挚的祝福 ❤️ —</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
