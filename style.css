@@ -13,6 +13,42 @@ body {
     position: relative;
 }
 
+/* ===== 音乐按钮 ===== */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    border: none;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-btn:hover {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.55);
+}
+
+.music-btn.playing {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    animation: music-spin 3s linear infinite;
+}
+
+@keyframes music-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* ===== 画布样式 ===== */
 #fireworks-canvas {
     position: fixed;
@@ -227,11 +263,11 @@ body {
 .gift-hint {
     margin-top: 40px;
     font-size: 22px;
-    color: #c2185b;
+    color: #0d47a1;
     font-weight: bold;
     letter-spacing: 2px;
     animation: hint-pulse 1.5s ease-in-out infinite;
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
 }
 
 @keyframes hint-pulse {
@@ -270,14 +306,16 @@ body {
 
 .main-title .char {
     display: inline-block;
-    background: linear-gradient(135deg, #c2185b, #7b1fa2);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #0d47a1;
     animation: title-bounce 1s ease-out forwards;
     animation-delay: calc(var(--i) * 0.1s);
     opacity: 0;
-    filter: drop-shadow(0 2px 4px rgba(123, 31, 162, 0.3));
+    text-shadow:
+        -2px -2px 0 #fff,
+        2px -2px 0 #fff,
+        -2px  2px 0 #fff,
+        2px  2px 0 #fff,
+        0 4px 12px rgba(13, 71, 161, 0.35);
 }
 
 @keyframes title-gradient {
@@ -294,10 +332,10 @@ body {
 .sub-title {
     font-family: 'Dancing Script', cursive;
     font-size: 28px;
-    color: #4a148c;
+    color: #1565c0;
     animation: subtitle-fade 1.5s ease-out 0.8s forwards;
     opacity: 0;
-    text-shadow: 0 2px 15px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
 }
 
 @keyframes subtitle-fade {
@@ -443,11 +481,11 @@ body {
 
 .wish-text {
     font-size: 18px;
-    color: #4a148c;
+    color: #0d47a1;
     margin: 10px 0;
     animation: wish-fadein 2s ease-out forwards;
     opacity: 0;
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.6);
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
 }
 
 .wish-text:nth-child(1) { animation-delay: 1.2s; }
@@ -466,14 +504,14 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 15px;
     display: inline-block;
-    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.2);
+    box-shadow: 0 6px 20px rgba(13, 71, 161, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.6);
     flex-shrink: 0;
 }
 
 .date-display {
     font-size: 18px;
-    color: #4a148c;
+    color: #0d47a1;
     margin-bottom: 8px;
     font-weight: 700;
     letter-spacing: 2px;
@@ -486,18 +524,18 @@ body {
     justify-content: center;
     align-items: center;
     gap: 6px;
-    color: #4a148c;
+    color: #0d47a1;
 }
 
 .time-block {
-    background: linear-gradient(135deg, #ff6b9d, #e91e63);
+    background: linear-gradient(135deg, #1976d2, #0d47a1);
     color: white;
     padding: 6px 15px;
     border-radius: 12px;
     min-width: 80px;
-    box-shadow: 0 6px 15px rgba(233, 30, 99, 0.3), inset 0 2px 4px rgba(255,255,255,0.3);
+    box-shadow: 0 6px 15px rgba(13, 71, 161, 0.35), inset 0 2px 4px rgba(255,255,255,0.3);
     font-weight: 700;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
     animation: time-pulse 1s ease-in-out infinite;
 }
 
@@ -507,7 +545,7 @@ body {
 }
 
 .time-separator {
-    color: #ff6b9d;
+    color: #0d47a1;
     font-weight: 700;
     animation: separator-blink 1s ease-in-out infinite;
 }
@@ -572,7 +610,7 @@ body {
 /* ===== 签名 ===== */
 .signature {
     margin-top: 12px;
-    color: #4a148c;
+    color: #0d47a1;
     font-size: 15px;
     font-style: italic;
     animation: signature-fade 2s ease-out 2s forwards;
@@ -723,5 +761,689 @@ body {
     .time-block {
         padding: 6px 12px;
         min-width: 65px;
+    }
+}
+
+/* ===== 蛋糕点击样式 ===== */
+#cake {
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    position: relative;
+}
+
+#cake:hover {
+    transform: scale(1.08) translateY(-5px);
+    filter: drop-shadow(0 10px 25px rgba(255, 107, 157, 0.4));
+}
+
+#cake:active {
+    transform: scale(0.97);
+}
+
+.cake-hint {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #0d47a1;
+    font-weight: bold;
+    white-space: nowrap;
+    animation: cake-hint-bounce 1.2s ease-in-out infinite;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+}
+
+@keyframes cake-hint-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+/* ===== 第二个礼物盒 overlay ===== */
+.gift-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 228, 235, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.gift-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.gift-box-wrapper-2 {
+    opacity: 0;
+    transform: scale(0.3) rotate(-30deg);
+    animation: wrapper-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.gift-overlay.active .gift-box-wrapper-2 {
+    animation: wrapper-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s forwards;
+}
+
+@keyframes wrapper-in {
+    0% { opacity: 0; transform: scale(0.3) rotate(-30deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+/* 第二个礼物盒 - 金色系 */
+.gift-box-2 {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    cursor: pointer;
+    animation: gift-float-2 2.5s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+@keyframes gift-float-2 {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-20px) rotate(3deg); }
+}
+
+.gift-box-2:hover {
+    transform: scale(1.1);
+}
+
+.gift-box-2:active {
+    transform: scale(0.95);
+}
+
+.gift-box-2.opening {
+    animation: none;
+}
+
+.gift-body-2 {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 135px;
+    background: linear-gradient(145deg, #ffd54f, #f9a825);
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(249, 168, 37, 0.5), inset 0 -5px 15px rgba(0,0,0,0.2);
+}
+
+.gift-ribbon-vertical-2 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 100%;
+    background: linear-gradient(90deg, #fff, #ffe082, #fff);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.gift-ribbon-horizontal-2 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 28px;
+    background: linear-gradient(180deg, #fff, #ffe082, #fff);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.gift-lid-2 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 75px;
+    background: linear-gradient(145deg, #ffecb3, #ffb300);
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(249, 168, 37, 0.4), inset 0 -3px 10px rgba(0,0,0,0.15);
+    animation: lid-bounce-2 2.5s ease-in-out infinite;
+}
+
+@keyframes lid-bounce-2 {
+    0%, 100% { transform: translateX(-50%) translateY(0) rotate(0); }
+    50% { transform: translateX(-50%) translateY(-8px) rotate(2deg); }
+}
+
+.gift-box-2.opening .gift-lid-2 {
+    animation: lid-fly-away 1s cubic-bezier(0.55, 0, 0.55, 0.2) forwards;
+}
+
+@keyframes lid-fly-away {
+    0% { transform: translateX(-50%) translateY(0) rotate(0); opacity: 1; }
+    100% { transform: translate(-150%, -400px) rotate(-45deg); opacity: 0; }
+}
+
+.gift-box-2.opening .gift-body-2 {
+    animation: body-pop 0.8s ease-out forwards;
+}
+
+@keyframes body-pop {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.15); }
+    100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+}
+
+/* 第二个礼物盒的蝴蝶结 */
+.bow-2 {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 55px;
+}
+
+/* 金色礼物盒的光芒 */
+.sparkles-2 span {
+    background: #fff;
+    box-shadow: 0 0 10px #fff, 0 0 20px #ffd54f, 0 0 30px #ff9800;
+    animation: sparkle-2 1.2s infinite;
+}
+
+@keyframes sparkle-2 {
+    0%, 100% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.8); }
+}
+
+.gift-hint-2 {
+    margin-top: 50px;
+    font-size: 22px;
+    color: #f57f17;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: hint-pulse 1.5s ease-in-out infinite;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
+}
+
+/* ===== 猫猫弹窗 ===== */
+.cat-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 71, 161, 0.4);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.cat-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cat-modal-content {
+    position: relative;
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3d1 50%, #fff 100%);
+    border-radius: 30px;
+    padding: 40px 50px 35px;
+    box-shadow: 0 20px 60px rgba(13, 71, 161, 0.4), 0 0 0 4px #ffd54f;
+    text-align: center;
+    max-width: 90%;
+    transform: scale(0.5) translateY(50px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease;
+}
+
+.cat-modal.active .cat-modal-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.cat-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    font-size: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat-close-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
+}
+
+.cat-title {
+    color: #f57f17;
+    font-size: 28px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(245, 127, 23, 0.3);
+}
+
+.cat-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.cat-greeting {
+    font-size: 22px;
+    color: #f57f17;
+    font-weight: 700;
+    margin: 15px 0 5px;
+    animation: text-pop 0.6s ease-out 0.8s both;
+}
+
+.cat-subtitle {
+    font-size: 16px;
+    color: #ef6c00;
+    margin: 5px 0;
+    animation: text-pop 0.6s ease-out 1s both;
+}
+
+@keyframes text-pop {
+    0% { opacity: 0; transform: translateY(10px) scale(0.8); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===== 卡通Q版金渐层猫猫 ===== */
+.cat {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    animation: cat-bounce 2s ease-in-out infinite;
+}
+
+@keyframes cat-bounce {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+/* 头 */
+.cat-head {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 140px;
+    background: linear-gradient(145deg, #fff5e1 0%, #ffe0b2 40%, #ffcc80 100%);
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: 0 8px 25px rgba(255, 158, 71, 0.3), inset -8px -10px 20px rgba(230, 160, 80, 0.2);
+    z-index: 2;
+}
+
+/* 头顶条纹 - 金渐层斑纹 */
+.cat-stripe {
+    position: absolute;
+    background: linear-gradient(180deg, #e69933, #cc8844);
+    border-radius: 50%;
+}
+
+.cat-stripe-1 {
+    top: 15px;
+    left: 45%;
+    width: 18px;
+    height: 25px;
+    transform: rotate(-15deg);
+    opacity: 0.6;
+}
+
+.cat-stripe-2 {
+    top: 20px;
+    left: 25%;
+    width: 14px;
+    height: 20px;
+    transform: rotate(-25deg);
+    opacity: 0.5;
+}
+
+.cat-stripe-3 {
+    top: 20px;
+    right: 25%;
+    width: 14px;
+    height: 20px;
+    transform: rotate(25deg);
+    opacity: 0.5;
+}
+
+/* 耳朵 */
+.cat-ear {
+    position: absolute;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 55px solid #ffcc80;
+    z-index: 1;
+}
+
+.cat-ear-left {
+    left: 18%;
+    transform: rotate(-18deg);
+}
+
+.cat-ear-right {
+    right: 18%;
+    transform: rotate(18deg);
+}
+
+.cat-ear-inner {
+    position: absolute;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid #ffab91;
+    z-index: 1;
+}
+
+.cat-ear-inner-left {
+    left: 23%;
+    transform: rotate(-18deg);
+}
+
+.cat-ear-inner-right {
+    right: 23%;
+    transform: rotate(18deg);
+}
+
+/* 眼睛 */
+.cat-eye {
+    position: absolute;
+    top: 55px;
+    width: 28px;
+    height: 32px;
+    background: radial-gradient(circle at 50% 40%, #1a237e 0%, #311b92 60%, #4527a0 100%);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.cat-eye-left {
+    left: 25%;
+}
+
+.cat-eye-right {
+    right: 25%;
+}
+
+.cat-eye-shine {
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 4px 10px 0 -2px rgba(255,255,255,0.8);
+}
+
+/* 腮红 */
+.cat-cheek {
+    position: absolute;
+    top: 85px;
+    width: 22px;
+    height: 14px;
+    background: radial-gradient(circle, #ff8a80 0%, #ff5252 60%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.cat-cheek-left {
+    left: 12%;
+}
+
+.cat-cheek-right {
+    right: 12%;
+}
+
+/* 鼻子 */
+.cat-nose {
+    position: absolute;
+    top: 82px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 7px solid #d84315;
+    z-index: 3;
+}
+
+/* 嘴巴 */
+.cat-mouth {
+    position: absolute;
+    top: 95px;
+    width: 12px;
+    height: 10px;
+    border: 2px solid #5d4037;
+    border-top: none;
+    background: transparent;
+    z-index: 2;
+}
+
+.cat-mouth-left {
+    left: calc(50% - 12px);
+    border-radius: 0 0 0 15px;
+    border-right: none;
+}
+
+.cat-mouth-right {
+    left: 50%;
+    border-radius: 0 0 15px 0;
+    border-left: none;
+}
+
+/* 胡须 */
+.cat-whisker {
+    position: absolute;
+    width: 35px;
+    height: 1.5px;
+    background: #8d6e63;
+    border-radius: 2px;
+    z-index: 3;
+}
+
+.cat-whisker-left-top {
+    top: 85px;
+    left: 8px;
+    transform: rotate(-10deg);
+}
+
+.cat-whisker-left-mid {
+    top: 93px;
+    left: 6px;
+    transform: rotate(0deg);
+}
+
+.cat-whisker-left-bot {
+    top: 101px;
+    left: 8px;
+    transform: rotate(10deg);
+}
+
+.cat-whisker-right-top {
+    top: 85px;
+    right: 8px;
+    transform: rotate(10deg);
+}
+
+.cat-whisker-right-mid {
+    top: 93px;
+    right: 6px;
+    transform: rotate(0deg);
+}
+
+.cat-whisker-right-bot {
+    top: 101px;
+    right: 8px;
+    transform: rotate(-10deg);
+}
+
+/* 身体 */
+.cat-body {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 90px;
+    background: linear-gradient(145deg, #fff5e1 0%, #ffe0b2 100%);
+    border-radius: 50% 50% 40% 40%;
+    z-index: 1;
+    box-shadow: 0 8px 20px rgba(255, 158, 71, 0.3), inset -5px -8px 15px rgba(230, 160, 80, 0.15);
+}
+
+.cat-body-stripe {
+    position: absolute;
+    background: linear-gradient(180deg, #e69933, #cc8844);
+    border-radius: 50%;
+    opacity: 0.55;
+}
+
+.cat-body-stripe-1 {
+    top: 20px;
+    left: 25%;
+    width: 18px;
+    height: 25px;
+    transform: rotate(-20deg);
+}
+
+.cat-body-stripe-2 {
+    top: 25px;
+    right: 25%;
+    width: 16px;
+    height: 22px;
+    transform: rotate(20deg);
+}
+
+/* 爪子 */
+.cat-paw {
+    position: absolute;
+    bottom: -5px;
+    width: 38px;
+    height: 28px;
+    background: linear-gradient(145deg, #fff3e0, #ffcc80);
+    border-radius: 50% 50% 40% 40%;
+    box-shadow: 0 3px 8px rgba(255, 158, 71, 0.2);
+    z-index: 2;
+}
+
+.cat-paw-left {
+    left: 15%;
+}
+
+.cat-paw-right {
+    right: 15%;
+}
+
+/* 尾巴 */
+.cat-tail {
+    position: absolute;
+    bottom: 15px;
+    right: -15px;
+    width: 70px;
+    height: 25px;
+    background: linear-gradient(90deg, #ffcc80 0%, #ffab91 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform-origin: left center;
+    transform: rotate(-30deg);
+    animation: tail-wag 1.5s ease-in-out infinite;
+    z-index: 0;
+    box-shadow: 0 3px 10px rgba(255, 158, 71, 0.2);
+}
+
+@keyframes tail-wag {
+    0%, 100% { transform: rotate(-30deg); }
+    50% { transform: rotate(-15deg); }
+}
+
+/* 爱心装饰 */
+.cat-heart {
+    position: absolute;
+    color: #ff4081;
+    font-size: 20px;
+    animation: heart-float 2s ease-in-out infinite;
+    text-shadow: 0 2px 8px rgba(255, 64, 129, 0.5);
+}
+
+.cat-heart-1 {
+    top: 10px;
+    right: 20px;
+    animation-delay: 0s;
+}
+
+.cat-heart-2 {
+    top: 40px;
+    left: 10px;
+    font-size: 16px;
+    animation-delay: 0.7s;
+    color: #ff80ab;
+}
+
+.cat-heart-3 {
+    bottom: 30px;
+    right: 0px;
+    font-size: 14px;
+    animation-delay: 1.4s;
+    color: #f48fb1;
+}
+
+@keyframes heart-float {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
+    50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+}
+
+/* 响应式 - 小屏调整 */
+@media (max-width: 480px) {
+    .cat {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .cat-head {
+        width: 140px;
+        height: 120px;
+    }
+    
+    .cat-body {
+        width: 120px;
+        height: 80px;
+    }
+    
+    .cat-modal-content {
+        padding: 30px 25px 25px;
+    }
+    
+    .cat-title {
+        font-size: 22px;
+    }
+    
+    .cat-greeting {
+        font-size: 18px;
     }
 }

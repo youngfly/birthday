@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- 背景音乐 -->
+    <audio id="bg-music" src="Sir Edward Elgar - Salut D'amour Op_ 12_L.ogg" loop></audio>
+
     <!-- 彩带背景容器 -->
     <div id="confetti-container"></div>
     
@@ -16,6 +19,11 @@
     
     <!-- 烟花画布 -->
     <canvas id="fireworks-canvas"></canvas>
+
+    <!-- 音乐控制按钮 -->
+    <button id="music-btn" class="music-btn" title="播放/暂停音乐">
+        <span id="music-icon">🎵</span>
+    </button>
     
     <!-- 初始打开页面 -->
     <div id="welcome-screen" class="screen active">
@@ -57,7 +65,7 @@
             </div>
             
             <div class="cake-section">
-                <div class="cake">
+                <div class="cake" id="cake" title="点击蛋糕，有惊喜哦~">
                     <div class="cake-plate"></div>
                     <div class="cake-layer cake-bottom"></div>
                     <div class="cake-layer cake-middle"></div>
@@ -73,6 +81,7 @@
                             <div class="flame"></div>
                         </div>
                     </div>
+                    <div class="cake-hint">🎂 点我有惊喜 🎂</div>
                 </div>
             </div>
             
@@ -98,6 +107,86 @@
         </div>
     </div>
     
+    <!-- 第二个礼物盒 overlay -->
+    <div id="gift-overlay" class="gift-overlay">
+        <div class="gift-box-wrapper gift-box-wrapper-2">
+            <div class="sparkles sparkles-2">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="gift-box gift-box-2" id="gift-box-2">
+                <div class="gift-lid gift-lid-2">
+                    <div class="bow bow-2">
+                        <div class="bow-left"></div>
+                        <div class="bow-right"></div>
+                        <div class="bow-center"></div>
+                    </div>
+                </div>
+                <div class="gift-body gift-body-2">
+                    <div class="gift-ribbon-vertical gift-ribbon-vertical-2"></div>
+                    <div class="gift-ribbon-horizontal gift-ribbon-horizontal-2"></div>
+                </div>
+            </div>
+            <p class="gift-hint gift-hint-2">✨ 点击打开惊喜礼物 ✨</p>
+        </div>
+    </div>
+
+    <!-- 猫猫展示弹窗 -->
+    <div id="cat-modal" class="cat-modal">
+        <div class="cat-modal-content">
+            <button class="cat-close-btn" id="cat-close-btn">×</button>
+            <h2 class="cat-title">🎁 惊喜来袭！</h2>
+            <div class="cat-container">
+                <!-- 卡通Q版金渐层猫猫 -->
+                <div class="cat">
+                    <!-- 耳朵 -->
+                    <div class="cat-ear cat-ear-left"></div>
+                    <div class="cat-ear cat-ear-right"></div>
+                    <div class="cat-ear-inner cat-ear-inner-left"></div>
+                    <div class="cat-ear-inner cat-ear-inner-right"></div>
+                    <!-- 头 -->
+                    <div class="cat-head">
+                        <div class="cat-stripe cat-stripe-1"></div>
+                        <div class="cat-stripe cat-stripe-2"></div>
+                        <div class="cat-stripe cat-stripe-3"></div>
+                        <div class="cat-cheek cat-cheek-left"></div>
+                        <div class="cat-cheek cat-cheek-right"></div>
+                        <div class="cat-eye cat-eye-left">
+                            <div class="cat-eye-shine"></div>
+                        </div>
+                        <div class="cat-eye cat-eye-right">
+                            <div class="cat-eye-shine"></div>
+                        </div>
+                        <div class="cat-nose"></div>
+                        <div class="cat-mouth cat-mouth-left"></div>
+                        <div class="cat-mouth cat-mouth-right"></div>
+                        <div class="cat-whisker cat-whisker-left-top"></div>
+                        <div class="cat-whisker cat-whisker-left-mid"></div>
+                        <div class="cat-whisker cat-whisker-left-bot"></div>
+                        <div class="cat-whisker cat-whisker-right-top"></div>
+                        <div class="cat-whisker cat-whisker-right-mid"></div>
+                        <div class="cat-whisker cat-whisker-right-bot"></div>
+                    </div>
+                    <!-- 身体 -->
+                    <div class="cat-body">
+                        <div class="cat-body-stripe cat-body-stripe-1"></div>
+                        <div class="cat-body-stripe cat-body-stripe-2"></div>
+                        <div class="cat-paw cat-paw-left"></div>
+                        <div class="cat-paw cat-paw-right"></div>
+                    </div>
+                    <!-- 尾巴 -->
+                    <div class="cat-tail"></div>
+                    <!-- 爱心装饰 -->
+                    <div class="cat-heart cat-heart-1">♥</div>
+                    <div class="cat-heart cat-heart-2">♥</div>
+                    <div class="cat-heart cat-heart-3">♥</div>
+                </div>
+            </div>
+            <p class="cat-greeting">喵呜~ 祝你生日快乐呀！</p>
+            <p class="cat-subtitle">一只可爱的金渐层为你送上祝福 🎂</p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
