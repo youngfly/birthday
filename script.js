@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     bindEvents();
 });
 
+// ===== 卡片计数器 =====
+let cardIndex = 1;  // 1-4 轮流
+
 // ===== 事件绑定 =====
 function bindEvents() {
     const giftBox = document.getElementById('gift-box');
@@ -21,16 +24,16 @@ function bindEvents() {
         giftBox2.addEventListener('click', openGift2);
     }
 
-    const closeBtn = document.getElementById('cat-close-btn');
+    const closeBtn = document.getElementById('card-close-btn');
     if (closeBtn) {
-        closeBtn.addEventListener('click', closeCatModal);
+        closeBtn.addEventListener('click', closeCardModal);
     }
 
-    const catModal = document.getElementById('cat-modal');
-    if (catModal) {
-        catModal.addEventListener('click', function(e) {
-            if (e.target === catModal) {
-                closeCatModal();
+    const cardModal = document.getElementById('card-modal');
+    if (cardModal) {
+        cardModal.addEventListener('click', function(e) {
+            if (e.target === cardModal) {
+                closeCardModal();
             }
         });
     }
@@ -114,11 +117,11 @@ function openCakeGift() {
     }
 }
 
-// ===== 打开第二个礼物盒 - 弹出猫猫弹窗 =====
+// ===== 打开第二个礼物盒 - 弹出对应卡片弹窗 =====
 function openGift2() {
     const giftBox2 = document.getElementById('gift-box-2');
     const giftOverlay = document.getElementById('gift-overlay');
-    const catModal = document.getElementById('cat-modal');
+    const cardModal = document.getElementById('card-modal');
 
     if (giftBox2 && !giftBox2.classList.contains('opening')) {
         giftBox2.classList.add('opening');
@@ -130,8 +133,11 @@ function openGift2() {
             if (giftOverlay) {
                 giftOverlay.classList.remove('active');
             }
-            if (catModal) {
-                catModal.classList.add('active');
+            // 重置卡片计数器，从第一个开始
+            cardIndex = 1;
+            showCard(cardIndex);
+            if (cardModal) {
+                cardModal.classList.add('active');
             }
             setTimeout(() => {
                 if (giftBox2) {
@@ -142,11 +148,60 @@ function openGift2() {
     }
 }
 
-// ===== 关闭猫猫弹窗 =====
-function closeCatModal() {
-    const catModal = document.getElementById('cat-modal');
-    if (catModal) {
-        catModal.classList.remove('active');
+// ===== 显示指定卡片 =====
+function showCard(index) {
+    // 先隐藏所有卡片内容
+    for (let i = 1; i <= 4; i++) {
+        const card = document.getElementById('card-' + i);
+        if (card) {
+            card.classList.remove('active');
+        }
+    }
+    // 移除所有主题类
+    const cardModal = document.getElementById('card-modal');
+    if (cardModal) {
+        cardModal.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4');
+        cardModal.classList.add('theme-' + index);
+    }
+    // 显示当前卡片
+    const currentCard = document.getElementById('card-' + index);
+    if (currentCard) {
+        currentCard.classList.add('active');
+    }
+}
+
+// ===== 关闭卡片弹窗：如果不是最后一张，则显示下一张；是最后一张才真正关闭 =====
+function closeCardModal() {
+    const cardModal = document.getElementById('card-modal');
+    if (!cardModal) return;
+
+    // 如果当前是第 4 张卡片，关闭弹窗并重置
+    if (cardIndex >= 4) {
+        cardModal.classList.remove('active');
+        cardIndex = 1; // 重置为第一张，下次从新开始
+        launchConfetti(80);
+        setTimeout(() => launchFireworksBurst(3), 200);
+    } else {
+        // 不是最后一张，先淡出内容再切换到下一张
+        cardIndex = cardIndex + 1;
+        // 添加淡出动画效果
+        const modalContent = cardModal.querySelector('.card-modal-content');
+        if (modalContent) {
+            modalContent.style.opacity = '0';
+            modalContent.style.transform = 'scale(0.8) translateY(30px)';
+            modalContent.style.transition = 'all 0.3s ease';
+        }
+        setTimeout(() => {
+            showCard(cardIndex);
+            // 重新触发弹窗内容的进入动画
+            if (modalContent) {
+                setTimeout(() => {
+                    modalContent.style.opacity = '1';
+                    modalContent.style.transform = 'scale(1) translateY(0)';
+                }, 50);
+            }
+            launchConfetti(30);
+        }, 300);
     }
 }
 

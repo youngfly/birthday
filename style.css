@@ -771,9 +771,39 @@ body {
     position: relative;
 }
 
+#cake::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(255, 193, 7, 0.15) 50%, transparent 70%);
+    box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.5),
+        0 0 60px rgba(255, 193, 7, 0.3),
+        0 0 90px rgba(255, 152, 0, 0.2);
+    z-index: -1;
+    animation: cake-glow 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes cake-glow {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+}
+
 #cake:hover {
     transform: scale(1.08) translateY(-5px);
-    filter: drop-shadow(0 10px 25px rgba(255, 107, 157, 0.4));
+    filter: drop-shadow(0 10px 25px rgba(255, 215, 0, 0.6));
 }
 
 #cake:active {
@@ -782,21 +812,29 @@ body {
 
 .cake-hint {
     position: absolute;
-    top: -28px;
+    top: -45px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 14px;
-    color: #0d47a1;
-    font-weight: bold;
+    font-size: 20px;
+    color: #ff6f00;
+    font-weight: 700;
     white-space: nowrap;
     animation: cake-hint-bounce 1.2s ease-in-out infinite;
-    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 1),
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 2px 4px rgba(0, 0, 0, 0.2);
     pointer-events: none;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 215, 0, 0.8);
 }
 
 @keyframes cake-hint-bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-8px); }
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.85; }
+    50% { transform: translateX(-50%) translateY(-10px); opacity: 1; }
 }
 
 /* ===== 第二个礼物盒 overlay ===== */
@@ -967,8 +1005,8 @@ body {
     text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
 }
 
-/* ===== 猫猫弹窗 ===== */
-.cat-modal {
+/* ===== 通用卡片弹窗 ===== */
+.card-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -985,30 +1023,31 @@ body {
     transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
-.cat-modal.active {
+.card-modal.active {
     opacity: 1;
     visibility: visible;
 }
 
-.cat-modal-content {
+.card-modal-content {
     position: relative;
     background: linear-gradient(135deg, #fff9e6 0%, #fff3d1 50%, #fff 100%);
     border-radius: 30px;
-    padding: 40px 50px 35px;
+    padding: 35px 50px 30px;
     box-shadow: 0 20px 60px rgba(13, 71, 161, 0.4), 0 0 0 4px #ffd54f;
     text-align: center;
     max-width: 90%;
+    min-width: 380px;
     transform: scale(0.5) translateY(50px);
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease;
 }
 
-.cat-modal.active .cat-modal-content {
+.card-modal.active .card-modal-content {
     transform: scale(1) translateY(0);
     opacity: 1;
 }
 
-.cat-close-btn {
+.card-close-btn {
     position: absolute;
     top: 15px;
     right: 20px;
@@ -1028,43 +1067,424 @@ body {
     justify-content: center;
 }
 
-.cat-close-btn:hover {
+.card-close-btn:hover {
     transform: scale(1.1) rotate(90deg);
     box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
 }
 
-.cat-title {
+.card-content {
+    display: none;
+}
+
+.card-content.active {
+    display: block;
+    animation: card-fade-in 0.5s ease-out;
+}
+
+@keyframes card-fade-in {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.card-title {
     color: #f57f17;
-    font-size: 28px;
-    margin-bottom: 25px;
+    font-size: 26px;
+    margin-bottom: 20px;
     font-weight: 700;
     text-shadow: 0 2px 8px rgba(245, 127, 23, 0.3);
 }
 
-.cat-container {
+.card-visual {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
+    min-height: 240px;
 }
 
-.cat-greeting {
+.card-greeting {
     font-size: 22px;
     color: #f57f17;
     font-weight: 700;
-    margin: 15px 0 5px;
-    animation: text-pop 0.6s ease-out 0.8s both;
+    margin: 10px 0 5px;
+    animation: text-pop 0.6s ease-out 0.6s both;
 }
 
-.cat-subtitle {
+.card-subtitle {
     font-size: 16px;
     color: #ef6c00;
     margin: 5px 0;
-    animation: text-pop 0.6s ease-out 1s both;
+    animation: text-pop 0.6s ease-out 0.8s both;
 }
 
 @keyframes text-pop {
     0% { opacity: 0; transform: translateY(10px) scale(0.8); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===== 卡片主题色 ===== */
+/* 卡片1: 金渐层猫猫 - 金色系（默认样式） */
+
+/* 卡片2: 桥牌 - 深蓝/红色系 */
+#card-2 .card-title { color: #1a237e; text-shadow: 0 2px 8px rgba(26, 35, 126, 0.3); }
+#card-2 .card-greeting { color: #1a237e; }
+#card-2 .card-subtitle { color: #c62828; }
+.card-modal.theme-2 .card-modal-content {
+    background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 50%, #fff 100%);
+    box-shadow: 0 20px 60px rgba(26, 35, 126, 0.4), 0 0 0 4px #3949ab;
+}
+
+/* 卡片3: 散文集 - 棕色/米色系 */
+#card-3 .card-title { color: #4e342e; text-shadow: 0 2px 8px rgba(78, 52, 46, 0.3); }
+#card-3 .card-greeting { color: #4e342e; }
+#card-3 .card-subtitle { color: #6d4c41; }
+.card-modal.theme-3 .card-modal-content {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 50%, #fff 100%);
+    box-shadow: 0 20px 60px rgba(78, 52, 46, 0.4), 0 0 0 4px #8d6e63;
+}
+
+/* 卡片4: 云和月亮 - 深蓝/银白色系 */
+#card-4 .card-title { color: #1a237e; text-shadow: 0 2px 8px rgba(26, 35, 126, 0.3); }
+#card-4 .card-greeting { color: #3949ab; }
+#card-4 .card-subtitle { color: #5c6bc0; }
+.card-modal.theme-4 .card-modal-content {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #e8eaf6 100%);
+    box-shadow: 0 20px 60px rgba(26, 35, 126, 0.4), 0 0 0 4px #5c6bc0;
+}
+
+/* ===== 桥牌样式 ===== */
+.bridge-cards {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    perspective: 1000px;
+}
+
+.bridge-card {
+    width: 80px;
+    height: 115px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 0 0 2px #1a237e;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    animation: card-fan 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px) rotate(0deg);
+}
+
+.bridge-card-1 {
+    animation: card-fan-1 0.8s ease-out 0.1s forwards;
+    transform-origin: bottom center;
+}
+.bridge-card-2 {
+    animation: card-fan-2 0.8s ease-out 0.25s forwards;
+    transform-origin: bottom center;
+}
+.bridge-card-3 {
+    animation: card-fan-3 0.8s ease-out 0.4s forwards;
+    transform-origin: bottom center;
+}
+.bridge-card-4 {
+    animation: card-fan-4 0.8s ease-out 0.55s forwards;
+    transform-origin: bottom center;
+}
+
+@keyframes card-fan-1 {
+    0% { opacity: 0; transform: translateY(50px) scale(0.5) rotate(0deg); }
+    100% { opacity: 1; transform: translateY(0) scale(1) rotate(-18deg); }
+}
+
+@keyframes card-fan-2 {
+    0% { opacity: 0; transform: translateY(50px) scale(0.5) rotate(0deg); }
+    100% { opacity: 1; transform: translateY(0) scale(1) rotate(-6deg); }
+}
+
+@keyframes card-fan-3 {
+    0% { opacity: 0; transform: translateY(50px) scale(0.5) rotate(0deg); }
+    100% { opacity: 1; transform: translateY(0) scale(1) rotate(6deg); }
+}
+
+@keyframes card-fan-4 {
+    0% { opacity: 0; transform: translateY(50px) scale(0.5) rotate(0deg); }
+    100% { opacity: 1; transform: translateY(0) scale(1) rotate(18deg); }
+}
+
+.card-corner {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a237e;
+}
+
+.card-corner-tl {
+    top: 6px;
+    left: 8px;
+}
+
+.card-corner-br {
+    bottom: 6px;
+    right: 8px;
+    transform: rotate(180deg);
+}
+
+.bridge-card-1 .card-corner,
+.bridge-card-4 .card-corner {
+    color: #1a237e;
+}
+
+.bridge-card-2 .card-corner {
+    color: #c62828;
+}
+
+.bridge-card-3 .card-corner {
+    color: #c62828;
+}
+
+.card-center {
+    font-size: 42px;
+    color: #1a237e;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.bridge-card-2 .card-center { color: #c62828; }
+.bridge-card-3 .card-center { color: #c62828; }
+
+/* ===== 书（散文集）样式 ===== */
+.book {
+    position: relative;
+    width: 220px;
+    height: 200px;
+    perspective: 1500px;
+}
+
+.book-cover {
+    position: relative;
+    width: 220px;
+    height: 200px;
+    background: linear-gradient(135deg, #5d4037 0%, #4e342e 50%, #3e2723 100%);
+    border-radius: 6px 12px 12px 6px;
+    box-shadow:
+        0 10px 30px rgba(62, 39, 35, 0.5),
+        inset 0 0 0 3px #8d6e63,
+        inset 6px 0 0 #6d4c41;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: book-open 1s ease-out forwards;
+    transform-origin: left center;
+}
+
+@keyframes book-open {
+    0% { transform: rotateY(-30deg) scale(0.7); opacity: 0; }
+    100% { transform: rotateY(0deg) scale(1); opacity: 1; }
+}
+
+.book-title {
+    font-size: 22px;
+    color: #ffd54f;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.book-subtitle {
+    font-size: 14px;
+    color: #ffe0b2;
+    font-style: italic;
+    letter-spacing: 4px;
+    margin-top: 5px;
+}
+
+.book-deco {
+    position: absolute;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffd54f, transparent);
+}
+
+.book-deco1 {
+    top: 30px;
+}
+
+.book-deco2 {
+    bottom: 30px;
+}
+
+.book-pages {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    bottom: 6px;
+    width: 6px;
+    background: repeating-linear-gradient(
+        to right,
+        #fff9e6 0px,
+        #fff9e6 2px,
+        #ffe0b2 2px,
+        #ffe0b2 4px
+    );
+    border-radius: 2px 0 0 2px;
+}
+
+.book-page-text {
+    display: none;
+}
+
+/* ===== 云和月亮样式 ===== */
+.night-sky {
+    position: relative;
+    width: 280px;
+    height: 200px;
+    background: linear-gradient(180deg, #1a237e 0%, #3949ab 50%, #5c6bc0 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(26, 35, 126, 0.5), inset 0 0 40px rgba(92, 107, 192, 0.3);
+    animation: sky-in 1s ease-out forwards;
+}
+
+@keyframes sky-in {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.moon {
+    position: absolute;
+    top: 30px;
+    right: 45px;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle at 30% 30%, #fff9c4 0%, #fff59d 50%, #ffe082 100%);
+    border-radius: 50%;
+    box-shadow:
+        0 0 30px rgba(255, 245, 157, 0.8),
+        0 0 60px rgba(255, 235, 59, 0.5),
+        0 0 90px rgba(255, 193, 7, 0.3);
+    animation: moon-glow 3s ease-in-out infinite;
+}
+
+@keyframes moon-glow {
+    0%, 100% { box-shadow: 0 0 30px rgba(255, 245, 157, 0.8), 0 0 60px rgba(255, 235, 59, 0.5), 0 0 90px rgba(255, 193, 7, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(255, 245, 157, 1), 0 0 80px rgba(255, 235, 59, 0.7), 0 0 120px rgba(255, 193, 7, 0.5); }
+}
+
+.moon-crater {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245, 193, 7, 0.3) 0%, rgba(251, 192, 45, 0.15) 100%);
+}
+
+.moon-crater-1 {
+    top: 15px;
+    left: 20px;
+    width: 18px;
+    height: 18px;
+}
+
+.moon-crater-2 {
+    top: 35px;
+    right: 15px;
+    width: 14px;
+    height: 14px;
+}
+
+.moon-crater-3 {
+    bottom: 12px;
+    left: 30px;
+    width: 12px;
+    height: 12px;
+}
+
+.cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 50px;
+    opacity: 0.95;
+    box-shadow:
+        0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.cloud-1 {
+    bottom: 40px;
+    left: 25px;
+    width: 90px;
+    height: 35px;
+    animation: cloud-float 4s ease-in-out infinite;
+}
+
+.cloud-1::before {
+    width: 45px;
+    height: 45px;
+    top: -20px;
+    left: 10px;
+}
+
+.cloud-1::after {
+    width: 55px;
+    height: 55px;
+    top: -25px;
+    right: 15px;
+}
+
+.cloud-2 {
+    bottom: 20px;
+    right: 30px;
+    width: 70px;
+    height: 28px;
+    animation: cloud-float 5s ease-in-out infinite reverse;
+    opacity: 0.85;
+}
+
+.cloud-2::before {
+    width: 35px;
+    height: 35px;
+    top: -15px;
+    left: 8px;
+}
+
+.cloud-2::after {
+    width: 42px;
+    height: 42px;
+    top: -20px;
+    right: 10px;
+}
+
+@keyframes cloud-float {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
+}
+
+.star {
+    position: absolute;
+    color: #fff9c4;
+    font-size: 16px;
+    text-shadow: 0 0 10px #fff59d, 0 0 20px #fff176;
+    animation: star-twinkle 2s ease-in-out infinite;
+}
+
+.star-1 { top: 25px; left: 35px; animation-delay: 0s; font-size: 14px; }
+.star-2 { top: 55px; left: 75px; animation-delay: 0.5s; font-size: 12px; }
+.star-3 { top: 20px; left: 130px; animation-delay: 1s; font-size: 18px; }
+.star-4 { top: 70px; right: 140px; animation-delay: 1.5s; font-size: 12px; }
+.star-5 { top: 40px; right: 20px; animation-delay: 0.8s; font-size: 14px; }
+
+@keyframes star-twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
 }
 
 /* ===== 卡通Q版金渐层猫猫 ===== */
@@ -1435,15 +1855,44 @@ body {
         height: 80px;
     }
     
-    .cat-modal-content {
+    .card-modal-content {
         padding: 30px 25px 25px;
+        min-width: 300px;
     }
     
-    .cat-title {
+    .card-title {
         font-size: 22px;
     }
     
-    .cat-greeting {
+    .card-greeting {
         font-size: 18px;
+    }
+
+    .bridge-card {
+        width: 60px;
+        height: 90px;
+    }
+
+    .card-center {
+        font-size: 32px;
+    }
+
+    .book {
+        width: 180px;
+        height: 160px;
+    }
+
+    .book-cover {
+        width: 180px;
+        height: 160px;
+    }
+
+    .book-title {
+        font-size: 18px;
+    }
+
+    .night-sky {
+        width: 240px;
+        height: 170px;
     }
 }

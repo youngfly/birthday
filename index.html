@@ -131,59 +131,133 @@
         </div>
     </div>
 
-    <!-- 猫猫展示弹窗 -->
-    <div id="cat-modal" class="cat-modal">
-        <div class="cat-modal-content">
-            <button class="cat-close-btn" id="cat-close-btn">×</button>
-            <h2 class="cat-title">🎁 惊喜来袭！</h2>
-            <div class="cat-container">
-                <!-- 卡通Q版金渐层猫猫 -->
-                <div class="cat">
-                    <!-- 耳朵 -->
-                    <div class="cat-ear cat-ear-left"></div>
-                    <div class="cat-ear cat-ear-right"></div>
-                    <div class="cat-ear-inner cat-ear-inner-left"></div>
-                    <div class="cat-ear-inner cat-ear-inner-right"></div>
-                    <!-- 头 -->
-                    <div class="cat-head">
-                        <div class="cat-stripe cat-stripe-1"></div>
-                        <div class="cat-stripe cat-stripe-2"></div>
-                        <div class="cat-stripe cat-stripe-3"></div>
-                        <div class="cat-cheek cat-cheek-left"></div>
-                        <div class="cat-cheek cat-cheek-right"></div>
-                        <div class="cat-eye cat-eye-left">
-                            <div class="cat-eye-shine"></div>
+    <!-- 通用卡片弹窗 -->
+    <div id="card-modal" class="card-modal">
+        <div class="card-modal-content">
+            <button class="card-close-btn" id="card-close-btn">×</button>
+
+            <!-- 卡片1: 金渐层猫猫 -->
+            <div class="card-content" id="card-1">
+                <h2 class="card-title">🎁 第一份惊喜！</h2>
+                <div class="card-visual">
+                    <div class="cat">
+                        <div class="cat-ear cat-ear-left"></div>
+                        <div class="cat-ear cat-ear-right"></div>
+                        <div class="cat-ear-inner cat-ear-inner-left"></div>
+                        <div class="cat-ear-inner cat-ear-inner-right"></div>
+                        <div class="cat-head">
+                            <div class="cat-stripe cat-stripe-1"></div>
+                            <div class="cat-stripe cat-stripe-2"></div>
+                            <div class="cat-stripe cat-stripe-3"></div>
+                            <div class="cat-cheek cat-cheek-left"></div>
+                            <div class="cat-cheek cat-cheek-right"></div>
+                            <div class="cat-eye cat-eye-left">
+                                <div class="cat-eye-shine"></div>
+                            </div>
+                            <div class="cat-eye cat-eye-right">
+                                <div class="cat-eye-shine"></div>
+                            </div>
+                            <div class="cat-nose"></div>
+                            <div class="cat-mouth cat-mouth-left"></div>
+                            <div class="cat-mouth cat-mouth-right"></div>
+                            <div class="cat-whisker cat-whisker-left-top"></div>
+                            <div class="cat-whisker cat-whisker-left-mid"></div>
+                            <div class="cat-whisker cat-whisker-left-bot"></div>
+                            <div class="cat-whisker cat-whisker-right-top"></div>
+                            <div class="cat-whisker cat-whisker-right-mid"></div>
+                            <div class="cat-whisker cat-whisker-right-bot"></div>
                         </div>
-                        <div class="cat-eye cat-eye-right">
-                            <div class="cat-eye-shine"></div>
+                        <div class="cat-body">
+                            <div class="cat-body-stripe cat-body-stripe-1"></div>
+                            <div class="cat-body-stripe cat-body-stripe-2"></div>
+                            <div class="cat-paw cat-paw-left"></div>
+                            <div class="cat-paw cat-paw-right"></div>
                         </div>
-                        <div class="cat-nose"></div>
-                        <div class="cat-mouth cat-mouth-left"></div>
-                        <div class="cat-mouth cat-mouth-right"></div>
-                        <div class="cat-whisker cat-whisker-left-top"></div>
-                        <div class="cat-whisker cat-whisker-left-mid"></div>
-                        <div class="cat-whisker cat-whisker-left-bot"></div>
-                        <div class="cat-whisker cat-whisker-right-top"></div>
-                        <div class="cat-whisker cat-whisker-right-mid"></div>
-                        <div class="cat-whisker cat-whisker-right-bot"></div>
+                        <div class="cat-tail"></div>
+                        <div class="cat-heart cat-heart-1">♥</div>
+                        <div class="cat-heart cat-heart-2">♥</div>
+                        <div class="cat-heart cat-heart-3">♥</div>
                     </div>
-                    <!-- 身体 -->
-                    <div class="cat-body">
-                        <div class="cat-body-stripe cat-body-stripe-1"></div>
-                        <div class="cat-body-stripe cat-body-stripe-2"></div>
-                        <div class="cat-paw cat-paw-left"></div>
-                        <div class="cat-paw cat-paw-right"></div>
-                    </div>
-                    <!-- 尾巴 -->
-                    <div class="cat-tail"></div>
-                    <!-- 爱心装饰 -->
-                    <div class="cat-heart cat-heart-1">♥</div>
-                    <div class="cat-heart cat-heart-2">♥</div>
-                    <div class="cat-heart cat-heart-3">♥</div>
                 </div>
+                <p class="card-greeting">喵呜~ 祝你生日快乐呀！</p>
+                <p class="card-subtitle">一只可爱的金渐层猫猫为你送上祝福 🐱</p>
             </div>
-            <p class="cat-greeting">喵呜~ 祝你生日快乐呀！</p>
-            <p class="cat-subtitle">一只可爱的金渐层为你送上祝福 🎂</p>
+
+            <!-- 卡片2: 桥牌 -->
+            <div class="card-content" id="card-2">
+                <h2 class="card-title">🎴 第二份惊喜！</h2>
+                <div class="card-visual">
+                    <div class="bridge-cards">
+                        <div class="bridge-card bridge-card-1">
+                            <div class="card-corner card-corner-tl">A♠</div>
+                            <div class="card-center">♠</div>
+                            <div class="card-corner card-corner-br">A♠</div>
+                        </div>
+                        <div class="bridge-card bridge-card-2">
+                            <div class="card-corner card-corner-tl">K♥</div>
+                            <div class="card-center">♥</div>
+                            <div class="card-corner card-corner-br">K♥</div>
+                        </div>
+                        <div class="bridge-card bridge-card-3">
+                            <div class="card-corner card-corner-tl">Q♦</div>
+                            <div class="card-center">♦</div>
+                            <div class="card-corner card-corner-br">Q♦</div>
+                        </div>
+                        <div class="bridge-card bridge-card-4">
+                            <div class="card-corner card-corner-tl">J♣</div>
+                            <div class="card-center">♣</div>
+                            <div class="card-corner card-corner-br">J♣</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="card-greeting">请保持对桥牌的热爱！</p>
+                <p class="card-subtitle">愿每一张牌都带来好运 🎴</p>
+            </div>
+
+            <!-- 卡片3: 散文集 -->
+            <div class="card-content" id="card-3">
+                <h2 class="card-title">📖 第三份惊喜！</h2>
+                <div class="card-visual">
+                    <div class="book">
+                    <div class="book-cover">
+                        <div class="book-title">WZ 的散文集</div>
+                        <div class="book-subtitle">散文集</div>
+                        <div class="book-deco book-deco1"></div>
+                        <div class="book-deco book-deco2"></div>
+                    </div>
+                    <div class="book-pages">
+                        <div class="book-page-text">愿文字如诗</div>
+                        <div class="book-page-text">愿生活如歌</div>
+                    </div>
+                </div>
+                </div>
+                <p class="card-greeting">WZ 的散文集</p>
+                <p class="card-subtitle">愿文字带给你温暖与思考 ✨</p>
+            </div>
+
+            <!-- 卡片4: 云和月亮 -->
+            <div class="card-content" id="card-4">
+                <h2 class="card-title">🌙 第四份惊喜！</h2>
+                <div class="card-visual">
+                    <div class="night-sky">
+                        <div class="moon">
+                            <div class="moon-crater moon-crater-1"></div>
+                            <div class="moon-crater moon-crater-2"></div>
+                            <div class="moon-crater moon-crater-3"></div>
+                        </div>
+                        <div class="cloud cloud-1"></div>
+                        <div class="cloud cloud-2"></div>
+                        <div class="star star-1">★</div>
+                        <div class="star star-2">★</div>
+                        <div class="star star-3">★</div>
+                        <div class="star star-4">★</div>
+                        <div class="star star-5">★</div>
+                    </div>
+                </div>
+                <p class="card-greeting">愿你如云般自由</p>
+                <p class="card-subtitle">如月般温柔明亮 ☁️�</p>
+            </div>
+
         </div>
     </div>
 
