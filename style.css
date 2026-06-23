@@ -531,6 +531,30 @@ body {
     color: #0d47a1;
 }
 
+.days-counter {
+    background: linear-gradient(135deg, #ff6b9d, #c2185b);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 15px;
+    min-width: 120px;
+    box-shadow: 0 6px 20px rgba(194, 24, 91, 0.4), inset 0 2px 4px rgba(255,255,255,0.3);
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    animation: days-pulse 2s ease-in-out infinite;
+}
+
+@keyframes days-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+.days-label {
+    font-size: 32px;
+    color: #c2185b;
+    font-weight: 700;
+    padding-left: 6px;
+}
+
 .time-block {
     background: linear-gradient(135deg, #1976d2, #0d47a1);
     color: white;

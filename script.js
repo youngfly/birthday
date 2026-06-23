@@ -205,31 +205,31 @@ function closeCardModal() {
     }
 }
 
-// ===== 时钟功能 =====
+// ===== 天数计数器（从2000年7月7日到今天） =====
 function startClock() {
-    updateClock();
-    setInterval(updateClock, 1000);
+    updateDaysCount();
+    // 每分钟更新一次，确保跨天时也能刷新
+    setInterval(updateDaysCount, 60000);
 }
 
-function updateClock() {
+function updateDaysCount() {
+    const birthDate = new Date(2000, 6, 7);  // 月份从0开始，6代表7月
     const now = new Date();
 
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
+    // 计算天数差（考虑时区，使用 UTC 避免夏令时误差）
+    const birthUTC = Date.UTC(birthDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+    const nowUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    const daysPassed = Math.floor((nowUTC - birthUTC) / (1000 * 60 * 60 * 24));
 
-    document.getElementById('hours').textContent = hours;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('seconds').textContent = seconds;
+    const daysCountEl = document.getElementById('days-count');
+    if (daysCountEl) {
+        daysCountEl.textContent = daysPassed.toLocaleString();
+    }
 
-    const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const weekDay = weekDays[now.getDay()];
-
-    document.getElementById('date-display').textContent =
-        `${year}年${month}月${day}日 ${weekDay}`;
+    const dateDisplayEl = document.getElementById('date-display');
+    if (dateDisplayEl) {
+        dateDisplayEl.textContent = `从 2000 年 7 月 7 日到今天，已经相伴`;
+    }
 }
 
 // ===== 彩带功能 =====
