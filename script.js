@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===== 卡片计数器 =====
-let cardIndex = 1;  // 1-4 轮流
+let cardIndex = 1;  // 1-6 轮流
 
 // ===== 事件绑定 =====
 function bindEvents() {
@@ -151,7 +151,7 @@ function openGift2() {
 // ===== 显示指定卡片 =====
 function showCard(index) {
     // 先隐藏所有卡片内容
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 6; i++) {
         const card = document.getElementById('card-' + i);
         if (card) {
             card.classList.remove('active');
@@ -160,7 +160,7 @@ function showCard(index) {
     // 移除所有主题类
     const cardModal = document.getElementById('card-modal');
     if (cardModal) {
-        cardModal.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4');
+        cardModal.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6');
         cardModal.classList.add('theme-' + index);
     }
     // 显示当前卡片
@@ -175,8 +175,8 @@ function closeCardModal() {
     const cardModal = document.getElementById('card-modal');
     if (!cardModal) return;
 
-    // 如果当前是第 4 张卡片，关闭弹窗并重置
-    if (cardIndex >= 4) {
+    // 如果当前是第 6 张卡片，关闭弹窗并重置
+    if (cardIndex >= 6) {
         cardModal.classList.remove('active');
         cardIndex = 1; // 重置为第一张，下次从新开始
         launchConfetti(80);
