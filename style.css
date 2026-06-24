@@ -1189,13 +1189,200 @@ body {
     box-shadow: 0 20px 60px rgba(62, 39, 35, 0.4), 0 0 0 4px #6d4c41;
 }
 
-/* 卡片6: 她 - 粉色/金色系 */
-#card-6 .card-title { color: #c2185b; text-shadow: 0 2px 8px rgba(194, 24, 91, 0.3); }
-#card-6 .card-greeting { color: #880e4f; font-size: 22px; font-weight: bold; }
-#card-6 .card-subtitle { color: #bf360c; }
+/* 卡片6: 圣诞树 - 绿色/红色系 */
+#card-6 .card-title { color: #1b5e20; text-shadow: 0 2px 8px rgba(27, 94, 32, 0.3); }
+#card-6 .card-greeting { color: #2e7d32; }
+#card-6 .card-subtitle { color: #c62828; }
 .card-modal.theme-6 .card-modal-content {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #ffebee 100%);
+    box-shadow: 0 20px 60px rgba(27, 94, 32, 0.4), 0 0 0 4px #388e3c;
+}
+
+/* ===== 圣诞树 ===== */
+.christmas-tree {
+    position: relative;
+    width: 160px;
+    height: 220px;
+    margin: 0 auto;
+}
+
+.tree-star {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    color: #ffd600;
+    text-shadow: 0 0 15px #ffd600, 0 0 25px #ffab00;
+    animation: star-twinkle 1.5s ease-in-out infinite;
+    z-index: 5;
+}
+
+@keyframes star-twinkle {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+    50% { transform: translateX(-50%) scale(1.15); opacity: 0.85; }
+}
+
+.tree-layer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 50%, #43a047 100%);
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    box-shadow: inset -5px -5px 15px rgba(0, 0, 0, 0.2), inset 5px 5px 10px rgba(255, 255, 255, 0.1);
+}
+
+.tree-layer-1 {
+    top: 35px;
+    width: 60px;
+    height: 55px;
+}
+
+.tree-layer-2 {
+    top: 70px;
+    width: 100px;
+    height: 60px;
+}
+
+.tree-layer-3 {
+    top: 110px;
+    width: 140px;
+    height: 70px;
+}
+
+.tree-trunk {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 35px;
+    background: linear-gradient(180deg, #6d4c41 0%, #4e342e 100%);
+    border-radius: 4px;
+    box-shadow: inset -3px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.tree-ornament {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), inset 2px 2px 3px rgba(255, 255, 255, 0.5);
+    z-index: 3;
+}
+
+.ornament-1 {
+    top: 50px;
+    left: 70px;
+    background: radial-gradient(circle at 30% 30%, #ff6b6b, #c62828);
+    animation: ornament-swing 2s ease-in-out infinite;
+}
+
+.ornament-2 {
+    top: 90px;
+    left: 50px;
+    background: radial-gradient(circle at 30% 30%, #ffd600, #f57f17);
+    animation: ornament-swing 2.3s ease-in-out infinite 0.2s;
+}
+
+.ornament-3 {
+    top: 95px;
+    left: 100px;
+    background: radial-gradient(circle at 30% 30%, #42a5f5, #1565c0);
+    animation: ornament-swing 2.1s ease-in-out infinite 0.4s;
+}
+
+.ornament-4 {
+    top: 135px;
+    left: 40px;
+    background: radial-gradient(circle at 30% 30%, #ba68c8, #6a1b9a);
+    animation: ornament-swing 1.9s ease-in-out infinite 0.1s;
+}
+
+.ornament-5 {
+    top: 140px;
+    left: 110px;
+    background: radial-gradient(circle at 30% 30%, #ff8a65, #bf360c);
+    animation: ornament-swing 2.2s ease-in-out infinite 0.3s;
+}
+
+@keyframes ornament-swing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.tree-light {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    z-index: 4;
+    animation: light-blink 1.5s ease-in-out infinite;
+}
+
+.light-1 { top: 60px; left: 65px; background: #fff176; box-shadow: 0 0 10px #fff176; animation-delay: 0s; }
+.light-2 { top: 75px; left: 95px; background: #ff8a80; box-shadow: 0 0 10px #ff8a80; animation-delay: 0.3s; }
+.light-3 { top: 115px; left: 45px; background: #80d8ff; box-shadow: 0 0 10px #80d8ff; animation-delay: 0.6s; }
+.light-4 { top: 125px; left: 85px; background: #b9f6ca; box-shadow: 0 0 10px #b9f6ca; animation-delay: 0.9s; }
+.light-5 { top: 150px; left: 60px; background: #ea80fc; box-shadow: 0 0 10px #ea80fc; animation-delay: 0.2s; }
+.light-6 { top: 155px; left: 100px; background: #ffd180; box-shadow: 0 0 10px #ffd180; animation-delay: 0.5s; }
+
+@keyframes light-blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* 卡片7: 她 - 粉色/金色系 */
+#card-7 .card-title { color: #c2185b; text-shadow: 0 2px 8px rgba(194, 24, 91, 0.3); }
+#card-7 .card-greeting { color: #880e4f; font-size: 22px; font-weight: bold; }
+#card-7 .card-subtitle { color: #bf360c; }
+.card-modal.theme-7 .card-modal-content {
     background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fff8e1 100%);
     box-shadow: 0 20px 60px rgba(194, 24, 91, 0.4), 0 0 0 4px #ec407a;
+}
+
+/* 卡片8: 一封信 - 米黄/褐色系 */
+#card-8 .card-title { color: #5d4037; text-shadow: 0 2px 8px rgba(93, 64, 55, 0.3); }
+#card-8 .card-greeting { color: #8d6e63; font-size: 20px; font-weight: bold; }
+#card-8 .card-subtitle { color: #6d4c41; font-style: italic; }
+.card-modal.theme-8 .card-modal-content {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 50%, #fbe9e7 100%);
+    box-shadow: 0 20px 60px rgba(93, 64, 55, 0.4), 0 0 0 4px #8d6e63;
+}
+
+/* ===== 简洁信纸 ===== */
+.letter-paper-simple {
+    width: 240px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    background: linear-gradient(180deg, #fffde7 0%, #fff8e1 100%);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(93, 64, 55, 0.25);
+    text-align: center;
+    border-top: 3px solid #d7ccc8;
+    border-bottom: 3px solid #d7ccc8;
+    animation: letter-float 3s ease-in-out infinite;
+}
+
+.letter-paper-simple .letter-text {
+    margin: 8px 0;
+    font-size: 17px;
+    color: #4e342e;
+    line-height: 1.8;
+    letter-spacing: 1px;
+    font-family: 'Georgia', 'Songti SC', serif;
+}
+
+.letter-paper-simple .letter-divider {
+    margin: 14px 0;
+    font-size: 12px;
+    color: #a1887f;
+    letter-spacing: 3px;
+}
+
+@keyframes letter-float {
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50% { transform: translateY(-4px) rotate(0.5deg); }
 }
 
 /* ===== 生日女孩图片 ===== */
