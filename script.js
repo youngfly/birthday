@@ -168,6 +168,11 @@ function showCard(index) {
     if (currentCard) {
         currentCard.classList.add('active');
     }
+    // 根据当前卡片切换按钮符号：最后一张显示✓，其他显示→
+    const closeBtn = document.getElementById('card-close-btn');
+    if (closeBtn) {
+        closeBtn.textContent = (index >= 8) ? '✓' : '→';
+    }
 }
 
 // ===== 关闭卡片弹窗：如果不是最后一张，则显示下一张；是最后一张才真正关闭 =====
