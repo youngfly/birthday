@@ -479,14 +479,14 @@ body {
 
 /* ===== 祝福语 ===== */
 .wishes {
-    margin: 12px 0;
+    margin: 6px 0 2px;
     flex-shrink: 0;
 }
 
 .wish-text {
-    font-size: 18px;
+    font-size: 17px;
     color: #0d47a1;
-    margin: 10px 0;
+    margin: 3px 0;
     animation: wish-fadein 2s ease-out forwards;
     opacity: 0;
     text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
@@ -502,8 +502,8 @@ body {
 
 /* ===== 时间显示 ===== */
 .time-section {
-    margin: 12px 0;
-    padding: 10px 25px;
+    margin: 2px 0 6px;
+    padding: 8px 22px;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
     border-radius: 15px;
@@ -514,9 +514,9 @@ body {
 }
 
 .date-display {
-    font-size: 18px;
+    font-size: 17px;
     color: #0d47a1;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     font-weight: 700;
     letter-spacing: 2px;
 }
@@ -1180,7 +1180,7 @@ body {
     box-shadow: 0 20px 60px rgba(26, 35, 126, 0.4), 0 0 0 4px #5c6bc0;
 }
 
-/* 卡片5: 咖啡机和烘焙机 - 咖啡色/暖棕色系 */
+/* 卡片5: 咖啡机和烤箱 - 咖啡色/暖棕色系 */
 #card-5 .card-title { color: #3e2723; text-shadow: 0 2px 8px rgba(62, 39, 35, 0.3); }
 #card-5 .card-greeting { color: #4e342e; }
 #card-5 .card-subtitle { color: #bf360c; }
@@ -1745,7 +1745,7 @@ body {
     50% { opacity: 0.5; transform: scale(0.8); }
 }
 
-/* ===== 咖啡机和烘焙机样式 ===== */
+/* ===== 咖啡机和烤箱样式 ===== */
 .coffee-scene {
     position: relative;
     width: 340px;
@@ -2035,183 +2035,155 @@ body {
     100% { transform: translateY(-30px) scaleX(0.5); opacity: 0; }
 }
 
-/* ===== 烘焙机 ===== */
-.roaster {
+/* ===== 烤箱 ===== */
+.oven {
     position: relative;
-    width: 110px;
+    width: 120px;
     height: 180px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.roaster-body {
+.oven-body {
     position: relative;
-    width: 100px;
-    height: 130px;
-    background: linear-gradient(135deg, #d84315 0%, #bf360c 50%, #8d2700 100%);
-    border-radius: 50% 50% 12px 12px / 30% 30% 12px 12px;
+    width: 110px;
+    height: 155px;
+    background: linear-gradient(135deg, #616161 0%, #424242 50%, #212121 100%);
+    border-radius: 8px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border: 2px solid #3e1a00;
+    border: 2px solid #000;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.roaster-drum {
-    position: absolute;
-    top: 35px;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle at 30% 30%, #5d4037 0%, #3e2723 80%);
-    border-radius: 50%;
-    border: 3px solid #263238;
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
-    animation: drum-rotate 4s linear infinite;
-}
-
-@keyframes drum-rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.roaster-drum::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: rgba(255, 193, 7, 0.3);
-    transform: translateY(-50%);
-}
-
-.roaster-drum::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 3px;
-    background: rgba(255, 193, 7, 0.3);
-    transform: translateX(-50%);
-}
-
-.roaster-window {
-    position: absolute;
-    top: 45px;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle at 40% 40%, rgba(255, 152, 0, 0.4) 0%, rgba(62, 39, 35, 0.7) 80%);
-    border-radius: 50%;
-    border: 2px solid #263238;
-    overflow: hidden;
-    box-shadow: inset 0 2px 8px rgba(255, 152, 0, 0.3), 0 0 15px rgba(255, 112, 67, 0.4);
-}
-
-.roaster-bean {
-    position: absolute;
-    width: 8px;
-    height: 12px;
-    background: radial-gradient(ellipse at 40% 30%, #8d6e63 0%, #5d4037 70%, #3e2723 100%);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.roaster-bean-1 { top: 10px; left: 15px; animation: bean-jump 1s ease-in-out infinite; }
-.roaster-bean-2 { top: 20px; right: 12px; animation: bean-jump 1.2s ease-in-out 0.2s infinite; }
-.roaster-bean-3 { top: 35px; left: 25px; animation: bean-jump 0.9s ease-in-out 0.4s infinite; }
-.roaster-bean-4 { bottom: 10px; right: 20px; animation: bean-jump 1.1s ease-in-out 0.1s infinite; }
-.roaster-bean-5 { bottom: 15px; left: 10px; animation: bean-jump 1.3s ease-in-out 0.3s infinite; }
-
-@keyframes bean-jump {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-4px) rotate(180deg); }
-}
-
-.roaster-control {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    width: 28px;
-    height: 28px;
-}
-
-.roaster-knob {
+.oven-top {
     width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 30%, #9e9e9e 0%, #616161 60%, #424242 100%);
+    height: 28px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 6px;
+    border-bottom: 2px solid #000;
+}
+
+.oven-knob {
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle at 30% 30%, #9e9e9e 0%, #616161 60%, #212121 100%);
     border-radius: 50%;
-    border: 2px solid #263238;
+    border: 2px solid #000;
     position: relative;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     animation: knob-turn 3s ease-in-out infinite;
 }
 
-.roaster-knob::before {
+.oven-knob-2 {
+    animation-delay: 0.8s;
+}
+
+.oven-knob::before {
     content: '';
     position: absolute;
-    top: 3px;
+    top: 2px;
     left: 50%;
     transform: translateX(-50%);
-    width: 3px;
-    height: 10px;
+    width: 2px;
+    height: 6px;
     background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 0 4px #ffeb3b;
+    border-radius: 1px;
 }
 
 @keyframes knob-turn {
-    0%, 100% { transform: rotate(-20deg); }
-    50% { transform: rotate(20deg); }
+    0%, 100% { transform: rotate(-30deg); }
+    50% { transform: rotate(30deg); }
 }
 
-.roaster-chimney {
-    position: absolute;
-    top: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 25px;
-    height: 40px;
-    background: linear-gradient(180deg, #5d4037 0%, #3e2723 100%);
-    border-radius: 4px 4px 2px 2px;
-    border: 2px solid #263238;
-}
-
-.roaster-smoke {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 15px;
-    height: 30px;
-    background: radial-gradient(circle at 50% 50%, rgba(158, 158, 158, 0.6) 0%, rgba(158, 158, 158, 0) 70%);
-    border-radius: 50%;
-    animation: smoke-rise 2.5s ease-out infinite;
-}
-
-.roaster-smoke-1 {
-    animation-delay: 0s;
-}
-
-.roaster-smoke-2 {
-    animation-delay: 1.2s;
-}
-
-@keyframes smoke-rise {
-    0% { transform: translateX(-50%) translateY(0) scale(0.5); opacity: 0.7; }
-    50% { opacity: 0.4; }
-    100% { transform: translateX(-60%) translateY(-50px) scale(1.5); opacity: 0; }
-}
-
-.roaster-base {
-    width: 100px;
-    height: 18px;
-    background: linear-gradient(180deg, #5d4037 0%, #3e2723 100%);
+.oven-door {
+    width: 90px;
+    height: 105px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, #757575 0%, #616161 100%);
+    border: 2px solid #000;
     border-radius: 4px;
-    margin-top: -4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+}
+
+.oven-glass {
+    width: 100%;
+    flex: 1;
+    background: linear-gradient(135deg, rgba(62, 39, 35, 0.9) 0%, rgba(38, 166, 154, 0.2) 100%);
     border: 2px solid #263238;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.oven-heat {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, transparent 0px, #ff5722 4px, transparent 8px, #ff9800 12px);
+    border-radius: 2px;
+    animation: heat-glow 1.5s ease-in-out infinite;
+}
+
+.oven-heat-top {
+    top: 6px;
+    box-shadow: 0 0 8px #ff5722, 0 0 15px rgba(255, 87, 34, 0.6);
+}
+
+.oven-heat-bottom {
+    bottom: 6px;
+    box-shadow: 0 0 8px #ff9800, 0 0 15px rgba(255, 152, 0, 0.6);
+    animation-delay: 0.3s;
+}
+
+@keyframes heat-glow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.oven-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255, 152, 0, 0.3) 0%, transparent 70%);
+    animation: oven-glow 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes oven-glow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+.oven-handle {
+    width: 60px;
+    height: 6px;
+    background: linear-gradient(180deg, #9e9e9e 0%, #424242 100%);
+    border-radius: 3px;
+    margin-top: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    border: 1px solid #000;
+}
+
+.oven-base {
+    width: 115px;
+    height: 12px;
+    background: linear-gradient(180deg, #424242 0%, #212121 100%);
+    border-radius: 0 0 4px 4px;
+    margin-top: -2px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border: 2px solid #000;
+    border-top: none;
 }
 
 /* ===== 卡通Q版金渐层猫猫 ===== */
