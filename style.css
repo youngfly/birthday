@@ -290,7 +290,7 @@ body {
 }
 
 .title-section {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     flex-shrink: 0;
 }
 
@@ -840,10 +840,10 @@ body {
 
 .cake-hint {
     position: absolute;
-    top: -45px;
+    top: -35px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 20px;
+    font-size: 18px;
     color: #ff6f00;
     font-weight: 700;
     white-space: nowrap;
@@ -853,9 +853,9 @@ body {
         0 0 20px rgba(255, 215, 0, 0.6),
         0 2px 4px rgba(0, 0, 0, 0.2);
     pointer-events: none;
-    padding: 6px 16px;
+    padding: 5px 12px;
     background: rgba(255, 255, 255, 0.6);
-    border-radius: 20px;
+    border-radius: 18px;
     backdrop-filter: blur(4px);
     border: 2px solid rgba(255, 215, 0, 0.8);
 }
