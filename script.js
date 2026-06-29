@@ -151,7 +151,7 @@ function openGift2() {
 // ===== 显示指定卡片 =====
 function showCard(index) {
     // 先隐藏所有卡片内容
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 7; i++) {
         const card = document.getElementById('card-' + i);
         if (card) {
             card.classList.remove('active');
@@ -160,7 +160,7 @@ function showCard(index) {
     // 移除所有主题类
     const cardModal = document.getElementById('card-modal');
     if (cardModal) {
-        cardModal.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6', 'theme-7', 'theme-8');
+        cardModal.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6', 'theme-7');
         cardModal.classList.add('theme-' + index);
     }
     // 显示当前卡片
@@ -171,7 +171,7 @@ function showCard(index) {
     // 根据当前卡片切换按钮符号：最后一张显示✓，其他显示→
     const closeBtn = document.getElementById('card-close-btn');
     if (closeBtn) {
-        closeBtn.textContent = (index >= 8) ? '✓' : '→';
+        closeBtn.textContent = (index >= 7) ? '✓' : '→';
     }
 }
 
@@ -180,8 +180,8 @@ function closeCardModal() {
     const cardModal = document.getElementById('card-modal');
     if (!cardModal) return;
 
-    // 如果当前是第 8 张卡片，关闭弹窗并重置
-    if (cardIndex >= 8) {
+    // 如果当前是第 7 张卡片，关闭弹窗并重置
+    if (cardIndex >= 7) {
         cardModal.classList.remove('active');
         cardIndex = 1; // 重置为第一张，下次从新开始
         launchConfetti(80);

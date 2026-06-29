@@ -1149,12 +1149,6 @@ body {
     box-shadow: 0 4px 15px rgba(136, 14, 79, 0.5);
 }
 
-/* 卡片8（信纸）- 咖啡色系 */
-.card-modal.theme-8 .card-close-btn {
-    background: linear-gradient(135deg, #6d4c41, #4e342e);
-    box-shadow: 0 4px 15px rgba(78, 52, 46, 0.5);
-}
-
 .card-content {
     display: none;
 }
@@ -1394,50 +1388,6 @@ body {
 .card-modal.theme-7 .card-modal-content {
     background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fff8e1 100%);
     box-shadow: 0 20px 60px rgba(194, 24, 91, 0.4), 0 0 0 4px #ec407a;
-}
-
-/* 卡片8: 一封信 - 米黄/褐色系 */
-#card-8 .card-title { color: #5d4037; text-shadow: 0 2px 8px rgba(93, 64, 55, 0.3); }
-#card-8 .card-greeting { color: #8d6e63; font-size: 20px; font-weight: bold; }
-#card-8 .card-subtitle { color: #6d4c41; font-style: italic; }
-.card-modal.theme-8 .card-modal-content {
-    background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 50%, #fbe9e7 100%);
-    box-shadow: 0 20px 60px rgba(93, 64, 55, 0.4), 0 0 0 4px #8d6e63;
-}
-
-/* ===== 简洁信纸 ===== */
-.letter-paper-simple {
-    width: 240px;
-    margin: 0 auto;
-    padding: 28px 24px;
-    background: linear-gradient(180deg, #fffde7 0%, #fff8e1 100%);
-    border-radius: 6px;
-    box-shadow: 0 8px 24px rgba(93, 64, 55, 0.25);
-    text-align: center;
-    border-top: 3px solid #d7ccc8;
-    border-bottom: 3px solid #d7ccc8;
-    animation: letter-float 3s ease-in-out infinite;
-}
-
-.letter-paper-simple .letter-text {
-    margin: 8px 0;
-    font-size: 17px;
-    color: #4e342e;
-    line-height: 1.8;
-    letter-spacing: 1px;
-    font-family: 'Georgia', 'Songti SC', serif;
-}
-
-.letter-paper-simple .letter-divider {
-    margin: 14px 0;
-    font-size: 12px;
-    color: #a1887f;
-    letter-spacing: 3px;
-}
-
-@keyframes letter-float {
-    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
-    50% { transform: translateY(-4px) rotate(0.5deg); }
 }
 
 /* ===== 生日女孩图片 ===== */
