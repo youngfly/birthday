@@ -42,6 +42,32 @@ function bindEvents() {
     if (musicBtn) {
         musicBtn.addEventListener('click', toggleMusic);
     }
+
+    const videoCloseBtn = document.getElementById('video-close-btn');
+    if (videoCloseBtn) {
+        videoCloseBtn.addEventListener('click', closeVideoModal);
+    }
+
+    const videoModal = document.getElementById('video-modal');
+    if (videoModal) {
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+    }
+
+    const birthdayVideo = document.getElementById('birthday-video');
+    if (birthdayVideo) {
+        birthdayVideo.addEventListener('ended', function() {
+            this.pause();
+        });
+        birthdayVideo.addEventListener('click', function() {
+            if (this.paused) {
+                this.play();
+            }
+        });
+    }
 }
 
 // ===== 音乐控制 =====
@@ -180,12 +206,13 @@ function closeCardModal() {
     const cardModal = document.getElementById('card-modal');
     if (!cardModal) return;
 
-    // 如果当前是第 7 张卡片，关闭弹窗并重置
+    // 如果当前是第 7 张卡片，关闭弹窗并显示视频
     if (cardIndex >= 7) {
         cardModal.classList.remove('active');
-        cardIndex = 1; // 重置为第一张，下次从新开始
+        cardIndex = 1;
         launchConfetti(80);
         setTimeout(() => launchFireworksBurst(3), 200);
+        showVideoModal();
     } else {
         // 不是最后一张，先淡出内容再切换到下一张
         cardIndex = cardIndex + 1;
@@ -207,6 +234,53 @@ function closeCardModal() {
             }
             launchConfetti(30);
         }, 300);
+    }
+}
+
+// ===== 视频弹窗控制 =====
+function showVideoModal() {
+    const videoModal = document.getElementById('video-modal');
+    const birthdayVideo = document.getElementById('birthday-video');
+    const bgMusic = document.getElementById('bg-music');
+
+    if (videoModal) {
+        videoModal.classList.add('active');
+    }
+
+    if (bgMusic && !bgMusic.paused) {
+        bgMusic.pause();
+    }
+
+    if (birthdayVideo) {
+        birthdayVideo.currentTime = 0;
+        const playPromise = birthdayVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                birthdayVideo.muted = true;
+                birthdayVideo.play();
+            });
+        }
+    }
+}
+
+function closeVideoModal() {
+    const videoModal = document.getElementById('video-modal');
+    const birthdayVideo = document.getElementById('birthday-video');
+    const bgMusic = document.getElementById('bg-music');
+
+    if (videoModal) {
+        videoModal.classList.remove('active');
+    }
+
+    if (birthdayVideo) {
+        birthdayVideo.pause();
+    }
+
+    if (bgMusic) {
+        const playPromise = bgMusic.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {});
+        }
     }
 }
 
