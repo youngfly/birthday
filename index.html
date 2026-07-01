@@ -9,7 +9,9 @@
 </head>
 <body>
     <!-- 背景音乐 -->
-    <audio id="bg-music" src="George Winston - Variations On The Canon By Pachelbel_H.ogg" loop></audio>
+    <audio id="bg-music" src="kanong.mp3" loop preload="auto"></audio>
+    <!-- 最后卡片语音 -->
+    <audio id="card-audio" src="bdm.flac" preload="auto"></audio>
 
     <!-- 彩带背景容器 -->
     <div id="confetti-container"></div>
@@ -354,15 +356,18 @@
                 <p class="card-subtitle">愿世间美好常伴✨</p>
             </div>
 
-        </div>
-    </div>
+            <!-- 卡片8: 他 -->
+            <div class="card-content" id="card-8">
+                <h2 class="card-title">💕 八乃永恒！</h2>
+                <div class="card-visual">
+                    <div class="birthday-boy-frame">
+                        <img src="boy.png" alt="他" class="birthday-boy-img">
+                    </div>
+                </div>
+                <p class="card-greeting">愿这份祝福永远陪伴你 💝</p>
+                <p class="card-subtitle">Happy Birthday Forever ❤️</p>
+            </div>
 
-    <!-- 视频弹窗 -->
-    <div id="video-modal" class="video-modal">
-        <div class="video-modal-content">
-            <button class="video-close-btn" id="video-close-btn">×</button>
-            <video id="birthday-video" src="生日祝福.mp4" controls playsinline>
-            <div class="video-hint">点击画面重播</div>
         </div>
     </div>
 

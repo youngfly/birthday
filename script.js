@@ -2,10 +2,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     initFireworks();
     bindEvents();
+    playMusic();
 });
 
 // ===== 卡片计数器 =====
 let cardIndex = 1;  // 1-8 轮流
+let isLastCard = false;
 
 // ===== 事件绑定 =====
 function bindEvents() {
@@ -43,31 +45,23 @@ function bindEvents() {
         musicBtn.addEventListener('click', toggleMusic);
     }
 
-    const videoCloseBtn = document.getElementById('video-close-btn');
-    if (videoCloseBtn) {
-        videoCloseBtn.addEventListener('click', closeVideoModal);
-    }
+    
 
-    const videoModal = document.getElementById('video-modal');
-    if (videoModal) {
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === videoModal) {
-                closeVideoModal();
+    document.body.addEventListener('click', function() {
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+        if (music) {
+            if (music.paused) {
+                music.muted = false;
+                music.play();
+            } else if (music.muted) {
+                music.muted = false;
             }
-        });
-    }
-
-    const birthdayVideo = document.getElementById('birthday-video');
-    if (birthdayVideo) {
-        birthdayVideo.addEventListener('ended', function() {
-            this.pause();
-        });
-        birthdayVideo.addEventListener('click', function() {
-            if (this.paused) {
-                this.play();
-            }
-        });
-    }
+            if (musicBtn) musicBtn.classList.add('playing');
+            if (musicIcon) musicIcon.textContent = '🎶';
+        }
+    }, { once: true });
 }
 
 // ===== 音乐控制 =====
@@ -76,14 +70,16 @@ function playMusic() {
     const musicBtn = document.getElementById('music-btn');
     const musicIcon = document.getElementById('music-icon');
     if (music) {
-        music.volume = 0.5;
+        music.volume = 1.0;
+        music.muted = true;
         const playPromise = music.play();
         if (playPromise !== undefined) {
-            playPromise.catch(() => { /* 自动播放被浏览器阻止时忽略 */ });
+            playPromise.then(() => {
+                if (musicBtn) musicBtn.classList.add('playing');
+                if (musicIcon) musicIcon.textContent = '🎶';
+            }).catch(() => {});
         }
     }
-    if (musicBtn) musicBtn.classList.add('playing');
-    if (musicIcon) musicIcon.textContent = '🎶';
 }
 
 function toggleMusic() {
@@ -107,6 +103,7 @@ function toggleMusic() {
 function openGift() {
     const welcomeScreen = document.getElementById('welcome-screen');
     const celebrationScreen = document.getElementById('celebration-screen');
+    const music = document.getElementById('bg-music');
 
     welcomeScreen.classList.remove('active');
 
@@ -117,7 +114,11 @@ function openGift() {
         launchConfetti(80);
         setTimeout(() => launchFireworksBurst(3), 300);
         startBalloons();
-        playMusic();
+
+        if (music) {
+            music.muted = false;
+            music.play();
+        }
 
         setInterval(() => {
             if (celebrationScreen.classList.contains('active')) {
@@ -177,7 +178,7 @@ function openGift2() {
 // ===== 显示指定卡片 =====
 function showCard(index) {
     // 先隐藏所有卡片内容
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 1; i <= 8; i++) {
         const card = document.getElementById('card-' + i);
         if (card) {
             card.classList.remove('active');
@@ -186,7 +187,7 @@ function showCard(index) {
     // 移除所有主题类
     const cardModal = document.getElementById('card-modal');
     if (cardModal) {
-        cardModal.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6', 'theme-7');
+        cardModal.classList.remove('theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6', 'theme-7', 'theme-8');
         cardModal.classList.add('theme-' + index);
     }
     // 显示当前卡片
@@ -197,7 +198,29 @@ function showCard(index) {
     // 根据当前卡片切换按钮符号：最后一张显示✓，其他显示→
     const closeBtn = document.getElementById('card-close-btn');
     if (closeBtn) {
-        closeBtn.textContent = (index >= 7) ? '✓' : '→';
+        closeBtn.textContent = (index >= 8) ? '✓' : '→';
+    }
+
+    // 如果是最后一张卡片，暂停背景音乐并播放bdm.flac
+    if (index === 8) {
+        isLastCard = true;
+        const bgMusic = document.getElementById('bg-music');
+        const cardAudio = document.getElementById('card-audio');
+        if (bgMusic && !bgMusic.paused) {
+            bgMusic.pause();
+        }
+        if (cardAudio) {
+            cardAudio.currentTime = 0;
+            const playPromise = cardAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    cardAudio.muted = false;
+                    cardAudio.play();
+                });
+            }
+        }
+    } else {
+        isLastCard = false;
     }
 }
 
@@ -206,13 +229,28 @@ function closeCardModal() {
     const cardModal = document.getElementById('card-modal');
     if (!cardModal) return;
 
-    // 如果当前是第 7 张卡片，关闭弹窗并显示视频
-    if (cardIndex >= 7) {
+    // 如果当前是第 8 张卡片，关闭弹窗并恢复背景音乐
+    if (cardIndex >= 8) {
         cardModal.classList.remove('active');
         cardIndex = 1;
         launchConfetti(80);
         setTimeout(() => launchFireworksBurst(3), 200);
-        showVideoModal();
+        
+        // 恢复背景音乐播放
+        const bgMusic = document.getElementById('bg-music');
+        const cardAudio = document.getElementById('card-audio');
+        
+        if (cardAudio) {
+            cardAudio.pause();
+        }
+        
+        if (bgMusic) {
+            bgMusic.muted = false;
+            const playPromise = bgMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {});
+            }
+        }
     } else {
         // 不是最后一张，先淡出内容再切换到下一张
         cardIndex = cardIndex + 1;
@@ -234,53 +272,6 @@ function closeCardModal() {
             }
             launchConfetti(30);
         }, 300);
-    }
-}
-
-// ===== 视频弹窗控制 =====
-function showVideoModal() {
-    const videoModal = document.getElementById('video-modal');
-    const birthdayVideo = document.getElementById('birthday-video');
-    const bgMusic = document.getElementById('bg-music');
-
-    if (videoModal) {
-        videoModal.classList.add('active');
-    }
-
-    if (bgMusic && !bgMusic.paused) {
-        bgMusic.pause();
-    }
-
-    if (birthdayVideo) {
-        birthdayVideo.currentTime = 0;
-        const playPromise = birthdayVideo.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(() => {
-                birthdayVideo.muted = true;
-                birthdayVideo.play();
-            });
-        }
-    }
-}
-
-function closeVideoModal() {
-    const videoModal = document.getElementById('video-modal');
-    const birthdayVideo = document.getElementById('birthday-video');
-    const bgMusic = document.getElementById('bg-music');
-
-    if (videoModal) {
-        videoModal.classList.remove('active');
-    }
-
-    if (birthdayVideo) {
-        birthdayVideo.pause();
-    }
-
-    if (bgMusic) {
-        const playPromise = bgMusic.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(() => {});
-        }
     }
 }
 

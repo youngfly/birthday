@@ -41,6 +41,12 @@ const server = http.createServer((req, res) => {
         case '.wav':
             contentType = 'audio/wav';
             break;
+        case '.mp3':
+            contentType = 'audio/mpeg';
+            break;
+        case '.flac':
+            contentType = 'audio/flac';
+            break;
     }
 
     fs.readFile(filePath, (error, content) => {
