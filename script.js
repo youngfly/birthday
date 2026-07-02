@@ -201,21 +201,21 @@ function showCard(index) {
         closeBtn.textContent = (index >= 8) ? '✓' : '→';
     }
 
-    // 如果是最后一张卡片，暂停背景音乐并播放bdm.flac
+    // 如果是最后一张卡片，暂停背景音乐并播放视频
     if (index === 8) {
         isLastCard = true;
         const bgMusic = document.getElementById('bg-music');
-        const cardAudio = document.getElementById('card-audio');
+        const birthdayVideo = document.getElementById('birthday-video');
         if (bgMusic && !bgMusic.paused) {
             bgMusic.pause();
         }
-        if (cardAudio) {
-            cardAudio.currentTime = 0;
-            const playPromise = cardAudio.play();
+        if (birthdayVideo) {
+            birthdayVideo.currentTime = 0;
+            const playPromise = birthdayVideo.play();
             if (playPromise !== undefined) {
                 playPromise.catch(() => {
-                    cardAudio.muted = false;
-                    cardAudio.play();
+                    birthdayVideo.muted = false;
+                    birthdayVideo.play();
                 });
             }
         }
@@ -229,28 +229,24 @@ function closeCardModal() {
     const cardModal = document.getElementById('card-modal');
     if (!cardModal) return;
 
-    // 如果当前是第 8 张卡片，关闭弹窗并恢复背景音乐
+    // 如果当前是第 8 张卡片，关闭弹窗（背景音乐不自动恢复，需要用户点击）
     if (cardIndex >= 8) {
         cardModal.classList.remove('active');
         cardIndex = 1;
         launchConfetti(80);
         setTimeout(() => launchFireworksBurst(3), 200);
         
-        // 恢复背景音乐播放
-        const bgMusic = document.getElementById('bg-music');
-        const cardAudio = document.getElementById('card-audio');
-        
-        if (cardAudio) {
-            cardAudio.pause();
+        // 停止视频播放
+        const birthdayVideo = document.getElementById('birthday-video');
+        if (birthdayVideo) {
+            birthdayVideo.pause();
         }
         
-        if (bgMusic) {
-            bgMusic.muted = false;
-            const playPromise = bgMusic.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(() => {});
-            }
-        }
+        // 更新音乐按钮状态为暂停
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+        if (musicBtn) musicBtn.classList.remove('playing');
+        if (musicIcon) musicIcon.textContent = '🎵';
     } else {
         // 不是最后一张，先淡出内容再切换到下一张
         cardIndex = cardIndex + 1;

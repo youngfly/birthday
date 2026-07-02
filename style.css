@@ -1430,29 +1430,22 @@ body {
     box-shadow: 0 4px 15px rgba(13, 71, 161, 0.5);
 }
 
-/* ===== 生日男孩图片 ===== */
-.birthday-boy-frame {
+/* ===== 视频容器 ===== */
+.video-container {
     position: relative;
-    width: 60%;
-    height: 450px;
+    width: 100%;
+    max-width: 360px;
     margin: 0 auto;
     border-radius: 16px;
     overflow: hidden;
-    border: none;
-    box-shadow: none;
+    box-shadow: 0 10px 30px rgba(21, 101, 192, 0.3);
 }
 
-@keyframes boy-frame-pulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(21, 101, 192, 0.4), 0 0 0 8px rgba(255, 235, 59, 0.3); }
-    50% { transform: scale(1.03); box-shadow: 0 15px 40px rgba(21, 101, 192, 0.5), 0 0 0 10px rgba(255, 235, 59, 0.5); }
-}
-
-.birthday-boy-img {
+.video-container video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 35%;
+    height: auto;
     display: block;
+    max-height: 360px;
 }
 
 /* ===== 桥牌样式 ===== */
